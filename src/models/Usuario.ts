@@ -7,6 +7,11 @@ const usuario = new Schema({
     nome: String,
     email: String,
     senha: String,
+    termos:{
+        type: Boolean,
+        default: false,
+        required: true,
+    },
     tipoUsuario:{
         type: String,
         enum: ['admin', 'usuario'],
