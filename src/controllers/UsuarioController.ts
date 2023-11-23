@@ -5,6 +5,9 @@ import Usuario from "../models/Usuario";
 class UsuarioController{
     public async cadastrarUsuario(req:Request, res:Response){
         try{
+            if(req.body.termos === false || req.body.termos === undefined){
+                return res.status(400).json({message: 'Aceite os termos de uso!'});
+            }
             const usuario = await Usuario.create(req.body);
             res.status(201).json(usuario);
         }catch(error){
