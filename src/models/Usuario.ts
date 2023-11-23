@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import Lista from "./Lista";
+import Termo from "./Termos";
 
 const { Schema } = mongoose;
 
@@ -8,6 +9,7 @@ const usuario = new Schema({
     email: String,
     senha: String,
     termos:{
+        ref: Termo,
         type: Boolean,
         default: false,
         required: true,
