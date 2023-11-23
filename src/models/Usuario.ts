@@ -12,11 +12,9 @@ const usuario = new Schema({
         termo: {
             ref: Termo,
             type: mongoose.Schema.Types.ObjectId,
-            required: true,
         },
         aceito: {
             type: Boolean,
-            required: true,
         },
         opcoes: {
             email: {

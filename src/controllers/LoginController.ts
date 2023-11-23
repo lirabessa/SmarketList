@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import Usuario from "../models/Usuario";
 import { generateToken } from "../middlewares";
+import Entrada from "../io/entrada";
 
 
 class LoginController{
@@ -9,9 +10,32 @@ class LoginController{
             const { email, senha } = req.body;
             const usuario = await Usuario.findOne({ email: email, senha: senha}, '-__v');
             if(usuario){
-                const token = await generateToken(usuario);               
-                res.set('Authorization', `Bearer ${token}`);
-                res.status(200).json({message:'Login realizado com sucesso...', token:token});
+                if (usuario.termos.aceito === false) {
+                        console.log(`Os termos de Usuário foram atualizados, deseja aceitar?`);
+                        console.log(`1 - Sim`)
+                        console.log(`2 - Não`)
+                        let entrada = new Entrada()
+                        let opcao = entrada.receberNumero(`Por favor, escolha uma opção: `)
+                        switch (opcao) {
+                            case 1:
+                                usuario.termos.aceito = true
+                                usuario.save()
+                                console.log(`Termos aceitos com sucesso`)
+                                const token = await generateToken(usuario);               
+                                res.set('Authorization', `Bearer ${token}`);
+                                res.status(200).json({message:'Login realizado com sucesso...', token:token});
+                                break
+                            case 2:
+                                console.log(`Não foi possível concluir a operação`)
+                                break
+                            default:
+                                console.log(`Operação não entendida :(`)
+                        }
+                }else{
+                    const token = await generateToken(usuario);               
+                    res.set('Authorization', `Bearer ${token}`);
+                    res.status(200).json({message:'Login realizado com sucesso...', token:token});
+                }
             }else{
                 res.status(404).json({message: `usuario não encontrado, email ou senha incorreto....`});
             }
