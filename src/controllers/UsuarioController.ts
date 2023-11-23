@@ -28,6 +28,20 @@ class UsuarioController{
         }
     }
 
+    public async buscarUsuarioAtivo(req: Request, res: Response) {
+        try {
+            const usuario = await Usuario.find({ status: 'ativo' }, '-__v');
+            
+            if (usuario && usuario.length > 0) {
+                res.status(200).json(usuario);
+            } else {
+                res.status(404).json({ message: 'Nenhum usuário ativo encontrado.' });
+            }
+        } catch (error) {
+            res.status(500).json({ message: error.message || 'Ocorreu um erro ao buscar usuários ativos.' });
+        }
+    }
+
     public async buscarUsuario(req: Request, res: Response){
         try{
             const usuario = await Usuario.find({});

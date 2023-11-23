@@ -30,7 +30,12 @@ const usuario = new Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: Lista,
         }
-    ]
+    ],
+    status:{
+        type:String,
+        enum:['ativo', 'inativo'],
+        default: 'ativo'
+    }
 });
 
 const Usuario = mongoose.model('usuarios', usuario);
