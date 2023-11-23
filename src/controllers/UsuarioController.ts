@@ -3,15 +3,16 @@ import Usuario from "../models/Usuario";
 
 
 class UsuarioController{
-    public async cadastrarUsuario(req:Request, res:Response){
-        try{
-            if(req.body.termos === false || req.body.termos === undefined){
-                return res.status(400).json({message: 'Aceite os termos de uso!'});
+    public async cadastrarUsuario(req: Request, res: Response) {
+        try {
+            if (req.body.termos.aceito !== true) {
+                return res.status(400).json({ message: 'Você precisa aceitar os termos para se cadastrar.' });
             }
+    
             const usuario = await Usuario.create(req.body);
             res.status(201).json(usuario);
-        }catch(error){
-            res.status(500).json({message:error});
+        } catch (error) {
+            res.status(500).json({ message: error.message });
         }
     }
     public async buscarUsuarioById(req: Request, res: Response){

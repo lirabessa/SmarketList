@@ -8,24 +8,31 @@ const usuario = new Schema({
     nome: String,
     email: String,
     senha: String,
-    termos:{
-        ref: Termo,
-        type: Boolean,
-        default: false,
-        required: true,
+    termos: {
+        termo: {
+            ref: Termo,
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+        },
+        aceito: {
+            type: Boolean,
+            required: true,
+        },
+        opcoes: {
+            email: {
+                type: Boolean,
+                default: false,
+            },
+        },
     },
-    tipoUsuario:{
-        type: String,
-        enum: ['admin', 'usuario'],
-        default: 'usuario'
-    },
-    listas:[
+    listas: [
         {
-            type:mongoose.Schema.Types.ObjectId,
-            ref: Lista
+            type: mongoose.Schema.Types.ObjectId,
+            ref: Lista,
         }
     ]
 });
+
 const Usuario = mongoose.model('usuarios', usuario);
 
 export default Usuario;

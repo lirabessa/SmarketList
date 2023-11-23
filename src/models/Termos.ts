@@ -8,8 +8,7 @@ const termos = new Schema({
     }],
     conteudo:{
         type: String,
-        required: true
-    },
+    }
 })
 
 const Termo = mongoose.model ('termos', termos);
