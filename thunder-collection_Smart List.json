@@ -1,0 +1,122 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Smart List",
+    "dateExported": "2023-11-23T14:44:25.890Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "1daa36cf-de24-4165-b2f5-500be496d289",
+            "colId": "e58ddfdc-ca00-4e75-bd79-74bd9ed460e5",
+            "containerId": "",
+            "name": "cadastrar usuario",
+            "url": "http://localhost:5000/usuario/cadastrar",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-11-23T14:43:28.570Z",
+            "modified": "2023-11-23T14:43:28.570Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n  \"nome\": \"teste4\",\r\n  \"email\": \"email@example.com\",\r\n  \"senha\": \"senha123\",\r\n  \"termos\": {\r\n    \"termo\": \"655f396ebbc446a86505c789\", \r\n    \"aceito\": true, \r\n    \"opcoes\": {\r\n      \"email\": true \r\n    }\r\n  }\r\n}\r\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "6d66ac27-935e-451d-9620-22d3d703df50",
+            "colId": "e58ddfdc-ca00-4e75-bd79-74bd9ed460e5",
+            "containerId": "",
+            "name": "buscar termo",
+            "url": "http://localhost:5000/termos/buscar",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-11-23T14:43:33.986Z",
+            "modified": "2023-11-23T14:43:33.986Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "e775844d-c2df-4d58-93bb-b9b623fcda55",
+            "colId": "e58ddfdc-ca00-4e75-bd79-74bd9ed460e5",
+            "containerId": "",
+            "name": "buscar usuario ID",
+            "url": "http://localhost:5000/usuario/buscar/655f510a28807b6966aeeb6c",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-11-23T14:43:38.802Z",
+            "modified": "2023-11-23T14:43:38.802Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "bc80e6e4-ce36-4f36-bff1-16500c97a381",
+            "colId": "e58ddfdc-ca00-4e75-bd79-74bd9ed460e5",
+            "containerId": "",
+            "name": "buscar usuario",
+            "url": "http://localhost:5000/usuario/buscar",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2023-11-23T14:43:46.654Z",
+            "modified": "2023-11-23T14:43:46.654Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "c6fe49c9-2ea0-419e-abd7-47b511310904",
+            "colId": "e58ddfdc-ca00-4e75-bd79-74bd9ed460e5",
+            "containerId": "",
+            "name": "atualizar termos",
+            "url": "http://localhost:5000/termos/atualizar/655f396ebbc446a86505c789",
+            "method": "PATCH",
+            "sortNum": 50000,
+            "created": "2023-11-23T14:43:52.584Z",
+            "modified": "2023-11-23T14:43:52.584Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "\r\n  {\r\n    \"versao\": \"1.0.1\",\r\n    \"conteudo\": \"hello world 1\"\r\n  \r\n  }",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "824d5f88-012d-4021-bd15-2eaac44914c5",
+            "colId": "e58ddfdc-ca00-4e75-bd79-74bd9ed460e5",
+            "containerId": "",
+            "name": "listar termo",
+            "url": "http://localhost:5000/termos/buscar",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2023-11-23T14:44:00.516Z",
+            "modified": "2023-11-23T14:44:00.516Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "5ff35bf4-ff0c-41f3-bbdc-b7defd483f4d",
+            "colId": "e58ddfdc-ca00-4e75-bd79-74bd9ed460e5",
+            "containerId": "",
+            "name": "cadastrar termo",
+            "url": "http://localhost:5000/termos/buscar",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2023-11-23T14:44:07.650Z",
+            "modified": "2023-11-23T14:44:07.650Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "\n  {\n    \"versao\":\"1.0.0\",\n    \"opcoes\": [{\n      \"email\": true\n    }],\n    \"conteudo\": \"hello world\"\n  }\n  \n",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
