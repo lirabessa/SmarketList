@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import Usuario from "../models/Usuario";
 import { generateToken } from "../middlewares";
 import Entrada from "../io/entrada";
+import UsuarioController from "./UsuarioController";
 
 
 class LoginController{
@@ -27,6 +28,11 @@ class LoginController{
                                 break
                             case 2:
                                 console.log(`Não foi possível concluir a operação`)
+                                res.status(500).json({message:'Não foi possível progredir'});
+                                usuario.nome = null;
+                                usuario.email = null;
+                                usuario.senha = null;
+                                await usuario.save();
                                 break
                             default:
                                 console.log(`Operação não entendida :(`)

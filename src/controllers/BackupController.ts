@@ -18,7 +18,7 @@ class BackupController{
             const categorias = await Categoria.find({});
 
             const filtrado = usuarios.map(user => {
-                if(!user.termos.aceito){
+                if(user.status === "inativo"){
                     user.email = null;
                     user.senha = null;
                     user.nome = null;

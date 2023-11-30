@@ -17,7 +17,6 @@ routes.use('/categoria', CategoriaRoutes);
 routes.use('/lista', ListaRoutes)
 routes.use('/termos', TermosRoutes)
 routes.use('/backup', BackupRoutes);
-
 routes.post('/login', LoginController.login);
 routes.get('/teste-login', LoginController.testeLogin);
 
