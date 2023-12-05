@@ -9,7 +9,16 @@ class UsuarioController{
                 return res.status(400).json({ message: 'Você precisa aceitar os termos para se cadastrar.' });
             }
     
-            const usuario = await Usuario.create(req.body);
+            const usuario = await Usuario.create({...req.body, termos:{...req.body.termos, 
+                historico:[{ data:new Date(), 
+                    campo: "email",
+                    valor: req.body.termos.opcoes.email},{
+                        data: new Date(),
+                        campo: "sms",
+                        valor: req.body.termos.opcoes.sms},{
+                            data: new Date(),
+                            campo: "whatsapp",
+                            valor: req.body.termos.opcoes.whatsapp}]}});
             res.status(201).json(usuario);
         } catch (error) {
             res.status(500).json({ message: error.message });
@@ -89,12 +98,45 @@ class UsuarioController{
             if(!usuario){
                 res.status(404).json({message: `usuario ${req.params.id} não encontrado....`});
             }else{
-                const { nome, email } = req.body;
+                const { nome, email, emailopcao, smsopcao, whatsappopcao} = req.body;
                 if(nome){
                     usuario.nome = nome;
                 }
                 if(email){
                     usuario.email = email;
+                }
+                if("emailopcao" in req.body){
+                    let historico = usuario.termos.historico
+                    let termos = usuario.termos
+                    historico.push({data: new Date, campo: "email",valor: emailopcao})
+                    let opcoes = {...termos.opcoes, email: emailopcao}
+                    usuario.termos = {
+                        ...termos,
+                        historico,
+                        opcoes
+                    }
+                }
+                if("smsopcao" in req.body){
+                    let historico = usuario.termos.historico
+                    let termos = usuario.termos
+                    historico.push({data: new Date, campo: "sms",valor: smsopcao})
+                    let opcoes = {...termos.opcoes, sms: smsopcao}
+                    usuario.termos = {
+                        ...termos,
+                        historico,
+                        opcoes
+                    }
+                }
+                if("whatsappopcao" in req.body){
+                    let historico = usuario.termos.historico
+                    let termos = usuario.termos
+                    historico.push({data: new Date, campo: "whatsapp",valor: whatsappopcao})
+                    let opcoes = {...termos.opcoes, whatsapp: whatsappopcao}
+                    usuario.termos = {
+                        ...termos,
+                        historico,
+                        opcoes
+                    }
                 }
                 await usuario.save();
 

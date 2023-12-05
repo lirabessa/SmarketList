@@ -21,8 +21,24 @@ const usuario = new Schema({
                 type: Boolean,
                 default: false,
             },
-        },
+            sms: {
+                type: Boolean,
+                default: false,
+            },
+            whatsapp: {
+                type: Boolean,
+                default: false,
+            },
+        }, 
+        historico: [
+            {
+                data: Date,
+                campo: String,
+                valor: Boolean
+            },
+        ],
     },
+   
     listas: [
         {
             type: mongoose.Schema.Types.ObjectId,
